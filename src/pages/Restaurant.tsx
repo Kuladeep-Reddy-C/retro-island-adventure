@@ -1,8 +1,7 @@
-
 import { useState } from 'react';
 import RetroHeader from '@/components/RetroHeader';
 import MarqueeText from '@/components/MarqueeText';
-import { Utensils, Coffee, Fish, Pizza, SalternateContainer, Beef, Dessert, Banana } from 'lucide-react';
+import { Utensils, Coffee, Fish, Pizza, Martini, Beef, Dessert, Banana } from 'lucide-react';
 
 type MenuItem = {
   id: number;
@@ -146,7 +145,7 @@ const Restaurant = () => {
       case 'lunch': return <Pizza className="h-4 w-4" />;
       case 'dinner': return <Utensils className="h-4 w-4" />;
       case 'dessert': return <Banana className="h-4 w-4" />;
-      case 'drinks': return <SalternateContainer className="h-4 w-4" />;
+      case 'drinks': return <Martini className="h-4 w-4" />;
       default: return <Utensils className="h-4 w-4" />;
     }
   };
