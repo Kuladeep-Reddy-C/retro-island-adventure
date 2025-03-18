@@ -29,9 +29,13 @@ const RetroButton = ({
     setIsPressed(true);
     
     if (withSound) {
-      const audio = new Audio('/click.mp3');
-      audio.volume = 0.3;
-      audio.play().catch(e => console.log('Audio play failed:', e));
+      try {
+        const audio = new Audio('/click.mp3');
+        audio.volume = 0.3;
+        audio.play().catch(e => console.log('Audio play failed:', e));
+      } catch (error) {
+        console.error('Error playing sound:', error);
+      }
     }
     
     setTimeout(() => {

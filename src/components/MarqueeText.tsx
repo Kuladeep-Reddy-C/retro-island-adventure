@@ -23,7 +23,7 @@ const MarqueeText = ({
   const directionClass = direction === 'right' ? 'flex-row-reverse' : 'flex-row';
   
   return (
-    <div className={cn("marquee-container", className)}>
+    <div className={cn("overflow-hidden whitespace-nowrap w-full", className)}>
       <div className={cn("flex gap-4", directionClass)}>
         <span className={speedClass}>
           {text} &nbsp;&nbsp;&nbsp;&nbsp;

@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import Home from "./pages/Home";
@@ -19,15 +19,28 @@ const queryClient = new QueryClient();
 const App = () => {
   // Preload audio files for better user experience
   useEffect(() => {
-    const audio = new Audio('/click.mp3');
-    audio.preload = 'auto';
+    const preloadAudio = async () => {
+      try {
+        const audioFiles = ['/click.mp3'];
+        
+        for (const file of audioFiles) {
+          const audio = new Audio(file);
+          audio.preload = 'auto';
+          
+          // This is just to load the audio, we don't actually play it
+          audio.volume = 0;
+          audio.muted = true;
+          
+          // Load the audio
+          await audio.load();
+          console.log(`Preloaded audio: ${file}`);
+        }
+      } catch (error) {
+        console.error('Error preloading audio:', error);
+      }
+    };
     
-    // This is just to load the audio, we don't actually play it
-    audio.volume = 0;
-    audio.muted = true;
-    
-    // Load the audio
-    audio.load();
+    preloadAudio();
   }, []);
   
   return (
